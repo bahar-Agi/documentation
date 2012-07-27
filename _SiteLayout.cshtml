@@ -1,0 +1,46 @@
+﻿﻿@{
+    var isDoc = Request.FilePath.IndexOf("/Documentation/") != -1;
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@Page.Title</title>
+        <link href="@Href("~/Styles/Site.css")" rel="stylesheet" />
+    </head>
+    <body>
+        <header id="HeaderDiv">
+            <div id="branding">
+                <h1><a href="http://docs.quartz-scheduler.net/"><span class="displayText">Quartz.NET Documentation</span></a></h1>
+            </div>
+        </header>
+        <div id="ContainerDiv">
+            <div id="SidebarDiv">
+                @if (isDoc) {
+                <h2>Table of Contents</h2>
+                <nav class="TocContainer"><ol></ol></nav>
+                <div id="SidebarFooterDiv">
+                    <a href="@Page.EditUrl">Edit this page</a>
+                </div>
+                }
+            </div>
+            <article id="MainDiv">
+                <div id="MainHeaderDiv">
+                </div>
+                <div id="PageInternalHeaderDiv">
+                </div>
+                <a id="PageTop"></a>
+            	<div id="PageHeaderDiv">
+            		<h1 class="pagetitle">@Page.DocumentTitle</h1>
+    			</div>
+            	<div id="PageContentDiv">
+                    @RenderBody()
+                </div>
+            </article>
+            <footer id="MainFooterDiv">
+            </footer>
+        </div>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+        <script type="text/javascript" src="@Href("~/Scripts/toc.js")"></script>
+    </body>
+</html>
